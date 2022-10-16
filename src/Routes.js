@@ -1,6 +1,6 @@
 import React from 'react'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
-import ReminderApp from '../src/Birthday-Reminder/App'
+import ReminderApp from './Birthday-Reminder-Functional-component/App'
 
 function Routing() {
   return (
