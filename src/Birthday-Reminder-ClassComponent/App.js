@@ -1,6 +1,6 @@
 import React from 'react'
-import Data from '../Birthday-Reminder-Functional-component/Data'
-import Fai from '../Birthday-Reminder-Functional-component/Images/Faiz-Pic.jpeg'
+import Data from './Data'
+import Fai from './Images/Faiz-Pic.jpeg'
 
 const MyContextData = React.createContext()
 
