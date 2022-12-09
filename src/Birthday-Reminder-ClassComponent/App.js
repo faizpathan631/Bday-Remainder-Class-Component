@@ -9,7 +9,7 @@ export default class App extends React.Component {
     this.state = {
       data: Data,
       addPeople: false,
-      newD: { id: Date.now(), name: '', age: '' },
+      newD: { id: '', name: '', age: '' },
     }
   }
   handleChange = (e) => {
@@ -31,15 +31,21 @@ export default class App extends React.Component {
     this.setState({ data: this.state.data.concat(this.state.newD) })
     this.closeModal()
   }
+  nullCheck = (val) => {
+    return val === null || val === undefined || val === ''
+  }
+
   render() {
     return (
       <>
-        <button onClick={this.openModal}>Add New person</button>
+        <button onClick={this.openModal}>Add New person</button> &nbsp;&nbsp;
         <button onClick={() => this.setState({ data: [] })}>Clear All</button>
+        <br />
         {this.state.data.map((a) => {
           const { id, name, age, image } = a
           return (
             <article key={id} className='person'>
+              <br />
               <img src={image ? image : Fai} alt={name} />
               <div>
                 <h4>{name}</h4>
@@ -48,7 +54,6 @@ export default class App extends React.Component {
             </article>
           )
         })}
-
         <ReactModal
           isOpen={this.state.addPeople}
           onRequestClose={this.closeModal}
@@ -85,7 +90,18 @@ export default class App extends React.Component {
             value={this.state.newD.age}
             onChange={this.handleChange}
           />
-          <input type='submit' onClick={this.sub} value="Add new B'day" />
+          <br />
+          <br />
+          <input
+            type='submit'
+            disabled={
+              this.nullCheck(this.state.newD.id) ||
+              this.nullCheck(this.state.newD.name) ||
+              this.nullCheck(this.state.newD.age)
+            }
+            onClick={this.sub}
+            value="Add new B'day"
+          />
         </ReactModal>
       </>
     )
